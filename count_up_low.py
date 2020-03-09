@@ -14,7 +14,27 @@ def up_low(str1):
         else:
             continue
 
-    return low_cnt, up_cnt
+    return up_cnt, low_cnt
+
+
+cnt_up, cnt_low = up_low('Hello Mr. Rogers, how are you this fine Tuesday?')
+print('count of lower case -> ', cnt_up, 'count of upper case -> ', cnt_low)
+
+
+# Alternate code
+
+def up_low(str1):
+    d = {"upper": 0, "lower": 0}
+
+    for i in str1:
+        if i.isupper():
+            d["upper"] += 1
+        elif i.islower():
+            d["lower"] += 1
+        else:
+            continue
+
+    return d["upper"], d["lower"]
 
 
 cnt_up, cnt_low = up_low('Hello Mr. Rogers, how are you this fine Tuesday?')
