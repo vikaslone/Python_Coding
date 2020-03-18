@@ -3,8 +3,9 @@
 
 
 def pallindrome_check(inp):
+    inp = inp.replace(' ', '')  # Remove spaces if they exist
     rev_inp = inp[::-1]
     return inp == rev_inp
 
 
-print(pallindrome_check('helle'))
+print(pallindrome_check('nurses run'))
