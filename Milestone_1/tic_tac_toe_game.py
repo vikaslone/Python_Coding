@@ -64,6 +64,7 @@ def check_block_choice(player_bloc_choice):
     return check_block
 
 
+# Function to let player 1 pick a block to place his input choice
 def p1_block_choice():
     p1_bloc_choice = int(input('Player 1, please select the block number between 1 and 9: '))
     check_output = check_block_choice(p1_bloc_choice)
@@ -73,6 +74,7 @@ def p1_block_choice():
         p1_block_choice()
 
 
+# Function to let player 12pick a block to place his input choice
 def p2_block_choice():
     p2_bloc_choice = int(input('Player 2, please select the block number between 1 and 9: '))
     check_output = check_block_choice(p2_bloc_choice)
@@ -82,10 +84,46 @@ def p2_block_choice():
         p2_block_choice()
 
 
+# Function to check if the game has a winner
+def check_winner():
+    check1 = False
+    check2 = False
+    check3 = False
+    check4 = False
+    global completion_check
+    global input_lst
+
+    for j in range(1, 8):
+        if (input_lst[j] != ' ' and input_lst[j+1] != ' ' and input_lst[j+2] != ' ') and (input_lst[j] == input_lst[j+1] == input_lst[j+2]):
+            check1 = True
+        else:
+            continue
+
+        j += 3
+
+    for k in range(1, 4):
+        if (input_lst[k] != ' ' and input_lst[k+3] != ' ' and input_lst[k+6] != ' ') and (input_lst[k] == input_lst[k+3] == input_lst[k+6]):
+            check2 = True
+        else:
+            continue
+
+        k += 1
+
+    if (input_lst[1] != ' ' and input_lst[5] != ' ' and input_lst[9] != ' ') and (input_lst[1] == input_lst[5] == input_lst[9]):
+        check3 = True
+
+    if (input_lst[3] != ' ' and input_lst[5] != ' ' and input_lst[7] != ' ') and (input_lst[3] == input_lst[5] == input_lst[7]):
+        check4 = True
+
+    if check1 or check2 or check3 or check4:
+        completion_check = True
+
+
 # Code execution Starts here
 # Just to add a new line at the start of the output
 print('\n')
 
+# Get user inputs
 p1_input_choice()
 p2_input_choice()
 
@@ -95,7 +133,6 @@ input_choice_list = {"p1": p1_choice, "p2": p2_choice}
 print(input_choice_list)
 
 # Display all the block numbers
-global input_lst
 input_lst = ['0', '1', '2', '3', '4', '5', '6', '7', '8', '9']
 # [' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ']
 # [' ', 'X', 'O', 'X', 'O', 'X', 'O', 'X', 'O', 'X']
@@ -108,16 +145,28 @@ print('\nAlternate between each other by selecting the blocks from 1 to 9 to for
 input_lst = [' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ']
 
 # display_board(input_lst)
-
-completion_check = 0
+global completion_check
+completion_check = False
 
 for i in range(1, 10):
     display_board(input_lst)
+
     if i % 2 == 0:
         p2_block_choice()
-        # check_result()
     else:
         p1_block_choice()
+
+    # Check for a winner after the current move
+    check_winner()
+
+    if completion_check:
+        if i % 2 == 0:
+            winner = 'Player 2'
+        else:
+            winner = 'Player 1'
+
+        print('\n********   GAME COMPLETE, ' + winner + ' won the game   ********')
+        break
 
 '''for i in range(1, 10):
     display_board(input_lst)
