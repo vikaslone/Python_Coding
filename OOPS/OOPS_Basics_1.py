@@ -34,6 +34,9 @@ Out[4]:
 '''
 import math
 
+# Create a new class. Class names will alsways start with Capital letter and use Camel casing
+# __init method is a constructor to set the object (instance) variables
+# self represent the current object (instance)
 class Line:
 
 	def __init__(self, coor1, coor2):
@@ -46,12 +49,16 @@ class Line:
 	def slope(self):
 		return (self.coor2[1] - self.coor1[1])/(self.coor2[0] - self.coor1[0])
 
+# Inputs
 coordinate1 = (3,2)		
 coordinate2 = (8,10)
 
-# instantiate an object of type Line
+# instantiate an object of type Line and pass the inputs
+# Here the __init__ method will be called and these inputs will be set for this instance line1
 line1 = Line(coordinate1, coordinate2)
 
+# Call the functions inside the class using the instance
+# and they will have access to the variables set dueing object instantiation
 print(f'distance -> {line1.distance()}')
 print(f'distance -> {line1.slope()}')
 
