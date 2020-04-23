@@ -63,17 +63,32 @@ class Account():
             self.balance -= withdraw_am
             print(f'{withdraw_am} has been withdrawn and available balance is {self.balance}')
     
+    # This is a dunder/magic method which will return a string
+    # This is called by default when print or str of an object is called
     def __str__(self):
         return (f'Account owner {self.owner} has balance of {self.balance}')
 
+    # This is a dunder/magic method which will delete an instance and perform actions mentioned
+    def __del__(self):
+        print('Account has been deleted')
+
+# Instantiate new account ac1
 ac1 = Account('Guest1', 100)
 
+# print the account details of object ac1 which calls the __str__ method
 print(ac1)
 
+# Deposit some amount
 ac1.deposit(400)
 
+# Withdraw some amount
 ac1.withdraw(100)
 
+# Print instance details
 print(ac1)
 
+# Withdraw more than available balance
 ac1.withdraw(600)
+
+# Delete account object
+del(ac1)
