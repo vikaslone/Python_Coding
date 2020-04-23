@@ -35,7 +35,7 @@ Out[4]:
 import math
 
 # Create a new class. Class names will alsways start with Capital letter and use Camel casing
-# __init method is a constructor to set the object (instance) variables
+# __init__ method is a constructor to set the object (instance) variables
 # self represent the current object (instance)
 class Line:
 
